@@ -1,0 +1,89 @@
+{
+  "fetched_at": "2026-06-03T23:50:56.289304+00:00",
+  "total": 6,
+  "items": [
+    {
+      "source_id": "huggingface_daily",
+      "source_name": "Hugging Face Daily Papers",
+      "category": "tech",
+      "title": "OSCAR: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization",
+      "summary": "INT2 KV-cache quantization is attractive for long-context LLM serving, but it remains difficult to make both accurate and deployable. Simple rotations such as Hadamard transforms reduce outliers, but still degrade at INT2 because they are not aligned with downstream attention. We propose OSCAR, an Ultra-low-bit KV Cache quantization method that estimates attention-aware covariance structures offline and uses them to derive fixed rotations and clipping thresholds for quantization. In this way, it aligns KV quantization with the covariance structures that attention actually consumes. More importantly, we not only provide theoretical justification but also develop a fully deployable OSCAR system with a custom INT2 attention kernel that remains compatible with paged KV-cache serving and fused kernel pipelines, enabling seamless integration into modern LLM serving frameworks such as SGLang and vLLM.\n  We evaluate our methods on recent reasoning models with reasoning traces of up to 32k tokens across 5 tasks. On Qwen3-4B-Thinking-2507 and Qwen3-8B, OSCAR reduces the BF16 accuracy gap to 3.78 and 1.42 points, respectively, while naive rotation INT2 collapses to nearly zero. We further scale OSCAR to Qwen3-32B and GLM-4.7 (358B params), where it remains effectively on par with BF16. On long context - RULER-NIAH up to 128K, OSCAR remains robust on both Qwen3 models, while naive rotation INT2 collapses. System-wise, OSCAR reduces KV-cache memory by approximately 8x, improves throughput by up to 7x at large batch sizes under the same memory budget, and accelerates batch-size-1 decoding by up to 3x over BF16 due to reduced memory bandwidth overhead.",
+      "url": "https://huggingface.co/papers/2605.17757",
+      "published": "2026-05-17T20:00:00.000Z",
+      "ai_keywords": [
+        "KV-cache quantization",
+        "attention-aware covariance structures",
+        "fixed rotations",
+        "clipping thresholds",
+        "INT2",
+        "attention kernel",
+        "paged KV-cache serving",
+        "fused kernel pipelines",
+        "long-context LLM serving",
+        "BF16 accuracy gap"
+      ],
+      "found_date": "2026-05-20",
+      "fail_count": 0
+    },
+    {
+      "source_id": "theverge_ai",
+      "source_name": "The Verge AI",
+      "category": "application",
+      "title": "Gmail is going to start talking to you",
+      "summary": "Google is launching a big new feature for Gmail called Gmail Live, a new AI-powered voice mode that's basically the Gemini Live experience but built specifically for your inbox. To use Gmail Live, tap an icon that will appear in your search bar and just start talking. In a press briefing, a Google employee showed […]",
+      "url": "https://www.theverge.com/tech/932973/google-gmail-live-ai-keep-docs-io-2026",
+      "published": "2026-05-19T13:45:00-04:00",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0
+    },
+    {
+      "source_id": "makeuseof",
+      "source_name": "MakeUseOf",
+      "category": "application",
+      "title": "Google's Gemini Spark is the first AI agent built for people who don't know what an AI agent is",
+      "summary": "It's not the first AI agent, but it seems poised to be the the easiest.",
+      "url": "https://www.makeuseof.com/gemini-spark-launch-ai-agent-no-coding/",
+      "published": "Tue, 19 May 2026 22:27:26 GMT",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0
+    },
+    {
+      "source_id": "makeuseof",
+      "source_name": "MakeUseOf",
+      "category": "application",
+      "title": "After a decade with Photoshop, this Canva and Gemini partnership finally won me over",
+      "summary": "Canva and Google have announced the Canva Connected App for Gemini.",
+      "url": "https://www.makeuseof.com/ive-been-a-loyal-photoshop-user-for-10-years-this-gemini-update-just-converted-me-to-canva-for-good/",
+      "published": "Tue, 19 May 2026 20:55:51 GMT",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0
+    },
+    {
+      "source_id": "makeuseof",
+      "source_name": "MakeUseOf",
+      "category": "application",
+      "title": "Google’s new “Neural Expressive” AI mode fixes the biggest issue I have with Gemini",
+      "summary": "Google has addressed a massive UX flaw in modern AI apps at Google I/O 2026",
+      "url": "https://www.makeuseof.com/googles-new-neural-expressive-ai-mode-fixes-the-biggest-issue-i-have-with-gemini/",
+      "published": "Tue, 19 May 2026 20:01:14 GMT",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0
+    },
+    {
+      "source_id": "makeuseof",
+      "source_name": "MakeUseOf",
+      "category": "application",
+      "title": "I was wasting Claude until I learned the RCCF method",
+      "summary": "Want a dramatically better output from Claude? Try the RCCF method.",
+      "url": "https://www.makeuseof.com/rccf-method-completely-changed-how-i-use-claude/",
+      "published": "Tue, 19 May 2026 20:00:18 GMT",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0
+    }
+  ]
+}

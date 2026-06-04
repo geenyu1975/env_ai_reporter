@@ -1,0 +1,105 @@
+{
+  "processed_at": "2026-06-03T23:51:12.922715+00:00",
+  "model": "claude-haiku-4-5",
+  "max_concurrent": 3,
+  "elapsed_seconds": 16.6,
+  "total": 4,
+  "succeeded": 6,
+  "failed": 0,
+  "total_input_tokens": 10457,
+  "total_output_tokens": 3003,
+  "cache_read_tokens": 0,
+  "items": [
+    {
+      "source_id": "huggingface_daily",
+      "source_name": "Hugging Face Daily Papers",
+      "category": "tech",
+      "title": "OSCAR: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization",
+      "summary": "INT2 KV-cache quantization is attractive for long-context LLM serving, but it remains difficult to make both accurate and deployable. Simple rotations such as Hadamard transforms reduce outliers, but still degrade at INT2 because they are not aligned with downstream attention. We propose OSCAR, an Ultra-low-bit KV Cache quantization method that estimates attention-aware covariance structures offline and uses them to derive fixed rotations and clipping thresholds for quantization. In this way, it aligns KV quantization with the covariance structures that attention actually consumes. More importantly, we not only provide theoretical justification but also develop a fully deployable OSCAR system with a custom INT2 attention kernel that remains compatible with paged KV-cache serving and fused kernel pipelines, enabling seamless integration into modern LLM serving frameworks such as SGLang and vLLM.\n  We evaluate our methods on recent reasoning models with reasoning traces of up to 32k tokens across 5 tasks. On Qwen3-4B-Thinking-2507 and Qwen3-8B, OSCAR reduces the BF16 accuracy gap to 3.78 and 1.42 points, respectively, while naive rotation INT2 collapses to nearly zero. We further scale OSCAR to Qwen3-32B and GLM-4.7 (358B params), where it remains effectively on par with BF16. On long context - RULER-NIAH up to 128K, OSCAR remains robust on both Qwen3 models, while naive rotation INT2 collapses. System-wise, OSCAR reduces KV-cache memory by approximately 8x, improves throughput by up to 7x at large batch sizes under the same memory budget, and accelerates batch-size-1 decoding by up to 3x over BF16 due to reduced memory bandwidth overhead.",
+      "url": "https://huggingface.co/papers/2605.17757",
+      "published": "2026-05-17T20:00:00.000Z",
+      "ai_keywords": [
+        "KV-cache quantization",
+        "attention-aware covariance structures",
+        "fixed rotations",
+        "clipping thresholds",
+        "INT2",
+        "attention kernel",
+        "paged KV-cache serving",
+        "fused kernel pipelines",
+        "long-context LLM serving",
+        "BF16 accuracy gap"
+      ],
+      "found_date": "2026-05-20",
+      "fail_count": 0,
+      "processed": true,
+      "claude_output": "### 標題\nOSCAR：用協方差感知旋轉實現 2 位元 KV 快取量化，大幅縮小長文本 LLM 記憶體佔用\n\n### 技術核心\n大型語言模型處理長文本時，KV 快取（鍵值快取）會佔用大量記憶體，成為部署瓶頸。本研究提出 OSCAR 方法，透過離線計算注意力機制的協方差結構，設計最佳旋轉矩陣，將 KV 快取量化至 2 位元整數格式。相比簡單的哈達瑪變換等通用旋轉，此方法能更精準對齊資料分布特性，在極端量化條件下仍保持推論品質。\n\n### 一句話看懂\n就像把書籍按照圖書館的實際借閱模式重新整理架子，OSCAR 不用通用的整理方法，而是針對每個模型的「注意力習慣」量身打造最合適的壓縮方式，讓極限壓縮不會丟失關鍵資訊。\n\n### 未來應用場景\n長文本客服系統：在資源受限的邊緣裝置上運行完整對話歷史，減少延遲和成本。\n醫學文獻分析：讓醫院伺服器在記憶體有限的情況下同時處理多份長篇病歷。\n實時翻譯服務：縮小模型記憶體需求，加速上百語言文本的即時轉換。",
+      "usage": {
+        "input_tokens": 1490,
+        "output_tokens": 467,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    {
+      "source_id": "theverge_ai",
+      "source_name": "The Verge AI",
+      "category": "application",
+      "title": "Gmail is going to start talking to you",
+      "summary": "Google is launching a big new feature for Gmail called Gmail Live, a new AI-powered voice mode that's basically the Gemini Live experience but built specifically for your inbox. To use Gmail Live, tap an icon that will appear in your search bar and just start talking. In a press briefing, a Google employee showed […]",
+      "url": "https://www.theverge.com/tech/932973/google-gmail-live-ai-keep-docs-io-2026",
+      "published": "2026-05-19T13:45:00-04:00",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0,
+      "processed": true,
+      "claude_output": "### 標題\nGmail 有聲音了！AI 幫你用說的讀信、回信\n\n### 同仁可以怎麼用？\n開會中收到重要信件卻沒時間看？用語音模式讓 AI 唸給你聽，還能用說話的方式回覆。整理信件、查詢內容也不用打字，對著手機說就行。特別適合在車上、現場勘查或兩手都忙的時候使用。\n\n### 一句話看懂\n就像有個貼心的新進同仁，站在你旁邊幫你讀公文、記重點、代你口述回覆。\n\n### 實務操作步驟\nGmail Live 功能目前需等候 Google 正式推送。推出後，可以這樣使用：\n\n1. 開啟 Gmail App（手機版），搜尋列會出現新的聲音圖示，點選啟動。\n2. 說出指令：「讀我的最新信件」或「讀環保署寄來的公文」，AI 會用語音朗讀。\n3. 詢問內容：說「這封信的主要訴求是什麼」，AI 語音回答並總結重點。\n4. 口述回覆：說「幫我草稿回信，告訴他資料已收到」，AI 生成草稿供你編修後寄出。\n\n小提醒：含個資或機密內容的信件，先確認信件是否適合用語音朗讀（避免在開放場所外洩訊息）；目前此功能需透過 Gemini Live 體驗，推送時間請留意 Google 官方公告。",
+      "usage": {
+        "input_tokens": 1811,
+        "output_tokens": 486,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    {
+      "source_id": "makeuseof",
+      "source_name": "MakeUseOf",
+      "category": "application",
+      "title": "Google's Gemini Spark is the first AI agent built for people who don't know what an AI agent is",
+      "summary": "It's not the first AI agent, but it seems poised to be the the easiest.",
+      "url": "https://www.makeuseof.com/gemini-spark-launch-ai-agent-no-coding/",
+      "published": "Tue, 19 May 2026 22:27:26 GMT",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0,
+      "processed": true,
+      "claude_output": "### 標題\nAI 幫你規劃方案，不用自己一步步想\n\n### 同仁可以怎麼用？\n當你在規劃環評審查流程、擬定宣導計畫，或需要分工安排任務時，Gemini Spark 可以幫你一次想好所有步驟。你只要告訴它目標和限制條件，它就會自動拆解成可行方案，省去反覆調整的時間。\n\n### 一句話看懂\n就像新進同仁來報到，你告訴他目標和資源，他就會自己規劃出完整的工作流程表。\n\n### 實務操作步驟\n想用 Gemini Spark 規劃專案，可以這樣做：\n\n1. 開啟 Gemini（gemini.google.com），確認選到最新版本。\n2. 在對話框輸入你的目標，例如：「我們要辦一場環境教育講座，對象是國小學童，預算五萬元，時間兩個月。請幫我規劃完整計畫，包括場地、師資、宣傳時程。」\n3. Gemini Spark 會逐步列出執行方案、預算配置、風險提醒。\n4. 根據建議調整內容，複製成可用的計畫書。\n\n小提醒：輸入時盡量清楚說明目標、預算、人力、期限，資訊越詳細，建議品質越高。",
+      "usage": {
+        "input_tokens": 1794,
+        "output_tokens": 433,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    },
+    {
+      "source_id": "makeuseof",
+      "source_name": "MakeUseOf",
+      "category": "application",
+      "title": "After a decade with Photoshop, this Canva and Gemini partnership finally won me over",
+      "summary": "Canva and Google have announced the Canva Connected App for Gemini.",
+      "url": "https://www.makeuseof.com/ive-been-a-loyal-photoshop-user-for-10-years-this-gemini-update-just-converted-me-to-canva-for-good/",
+      "published": "Tue, 19 May 2026 20:55:51 GMT",
+      "ai_keywords": [],
+      "found_date": "2026-05-20",
+      "fail_count": 0,
+      "processed": true,
+      "claude_output": "### 標題\nCanva 搭 Gemini，AI 幫你快速製作宣導海報和懶人包\n\n### 同仁可以怎麼用？\n環保宣導、防災提醒需要視覺化懶人包時，直接用 Gemini 寫出文案後，再交給 Canva 自動排版成海報。不必學複雜的設計軟體，也能做出專業感十足的成果。政令宣導、活動公告、或環境教育素材都適用。\n\n### 一句話看懂\n就像有個新進同仁既懂寫公文、又會排版設計，一個人把整份公告從草稿到印刷版全包了。\n\n### 實務操作步驟\n想用 Gemini 和 Canva 快速產出宣導海報，可以這樣做：\n\n1. 開啟 Gemini（gemini.google.com），輸入：「幫我寫一份針對一般民眾的垃圾分類宣導文案，包含標題、三個要點和行動呼籲，每項簡潔有力。」\n2. 複製 Gemini 產出的文案，檢查內容是否符合環保署立場。\n3. 進入 Canva（canva.com），選擇「海報」範本，貼入文案。\n4. Canva 會自動建議排版和配圖，調整顏色為環保主題綠色，加入機關 LOGO。\n5. 匯出為 PNG 或 PDF，供發文或印刷。\n\n小提醒：文案內容若涉及政策規定，請先由科室主管審核；Canva 線上版若涉及機密訊息，請使用機關授權系統。",
+      "usage": {
+        "input_tokens": 1790,
+        "output_tokens": 513,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0
+      }
+    }
+  ]
+}

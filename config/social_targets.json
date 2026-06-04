@@ -1,0 +1,11 @@
+{
+  "_comment": "YouTube 頻道抓取目標設定。新增或移除頻道只需修改此檔案，無需改動程式碼。channel_id 首次執行後會自動快取至 youtube_channel_ids.json。",
+
+  "youtube": [
+    { "channel": "@GoogleDeepMind",  "name": "Google DeepMind" },
+    { "channel": "@OpenAI",          "name": "OpenAI" },
+    { "channel": "@Google",          "name": "Google" },
+    { "channel": "@MicrosoftTaiwan", "name": "Microsoft 台灣" },
+    { "channel": "@nvidiataiwan",    "name": "NVIDIA 台灣" }
+  ]
+}

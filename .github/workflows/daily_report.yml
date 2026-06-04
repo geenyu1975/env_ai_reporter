@@ -1,0 +1,116 @@
+name: Daily AI Digest
+
+# ── 排程：每天台灣時間早上 8:00（UTC 00:00）自動執行
+# ── 亦可在 GitHub Actions 頁面手動觸發（workflow_dispatch）
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # 00:00 UTC = 08:00 CST（台灣標準時間）
+  workflow_dispatch:       # 手動觸發，方便測試
+    inputs:
+      limit:
+        description: '每次最多刊出幾篇（預設 4）'
+        required: false
+        default: '4'
+      no_pdf:
+        description: '不產生 PDF（輸入 true 跳過）'
+        required: false
+        default: 'false'
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # 允許 git push 報告回倉庫
+
+    steps:
+      # ── 1. 取出程式碼 ──────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # 完整歷史，避免 push 衝突
+
+      # ── 2. 設定 Python ────────────────────────────────────────────────────
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      # ── 3. 下載字型到 assets/fonts/（不依賴系統套件管理，無需 sudo）────────
+      - name: Download CJK fonts into assets/fonts/
+        run: |
+          mkdir -p assets/fonts
+          BASE="https://github.com/notofonts/noto-cjk/raw/main/Sans/SubsetOTF/TC"
+          REG="assets/fonts/NotoSansCJKtc-Regular.otf"
+          BOLD="assets/fonts/NotoSansCJKtc-Bold.otf"
+
+          if [ ! -f "$REG" ]; then
+            echo "[fonts] Downloading Regular..."
+            curl -fsSL "$BASE/NotoSansCJKtc-Regular.otf" -o "$REG"
+          else
+            echo "[fonts] Regular already cached"
+          fi
+
+          if [ ! -f "$BOLD" ]; then
+            echo "[fonts] Downloading Bold..."
+            curl -fsSL "$BASE/NotoSansCJKtc-Bold.otf" -o "$BOLD"
+          else
+            echo "[fonts] Bold already cached"
+          fi
+
+          ls -lh assets/fonts/
+
+      # ── 4. 安裝 Python 相依套件 ───────────────────────────────────────────
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      # ── 5. 執行主程式 ─────────────────────────────────────────────────────
+      - name: Run daily AI digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          LIMIT=${{ github.event.inputs.limit || '4' }}
+          NO_PDF=${{ github.event.inputs.no_pdf || 'false' }}
+
+          CMD="python src/main.py --limit $LIMIT"
+          if [ "$NO_PDF" = "true" ]; then
+            CMD="$CMD --no-pdf"
+          fi
+
+          echo "[run] $CMD"
+          $CMD
+
+      # ── 6. 將報告 commit 回倉庫 ──────────────────────────────────────────
+      - name: Commit and push reports
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 加入所有產出物（data/ 與 reports/）
+          git add data/raw_data.json \
+                  data/processed_data.json \
+                  data/seen_urls.json \
+                  reports/ \
+                  || true   # 某些檔案可能不存在時不報錯
+
+          # 只在有變更時才 commit
+          if git diff --staged --quiet; then
+            echo "[git] 本次無新文章，略過 commit"
+          else
+            REPORT_DATE=$(date -u +%Y-%m-%d)
+            git commit -m "chore: AI digest ${REPORT_DATE}"
+            git push
+            echo "[git] 報告已推送"
+          fi
+
+      # ── 7. 上傳 PDF 成品（可選，方便直接下載）────────────────────────────
+      - name: Upload PDF artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-digest-${{ github.run_id }}
+          path: reports/*.pdf
+          if-no-files-found: ignore
+          retention-days: 30
