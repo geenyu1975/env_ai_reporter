@@ -4,9 +4,7 @@ name: Daily AI Digest
 # ── 亦可在 GitHub Actions 頁面手動觸發（workflow_dispatch）
 
 on:
-  schedule:
-    - cron: '0 0 * * *'   # 00:00 UTC = 08:00 CST（台灣標準時間）
-  workflow_dispatch:       # 手動觸發，方便測試
+  workflow_dispatch:       # 僅手動觸發（本機已由 Windows 工作排程器每日執行）
     inputs:
       limit:
         description: '每次最多刊出幾篇（預設 4）'
